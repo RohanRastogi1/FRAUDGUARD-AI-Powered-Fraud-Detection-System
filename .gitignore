@@ -8,3 +8,4 @@ target/
 .classpath
 .project
 *.log
+src/main/resources/db.properties
