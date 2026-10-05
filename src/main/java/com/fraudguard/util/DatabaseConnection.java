@@ -81,7 +81,7 @@ public class DatabaseConnection {
         if (env != null && !env.isEmpty()) return env;
         String sys = System.getProperty("db.url");
         if (sys != null && !sys.isEmpty()) return sys;
-        return cachedProperties.getProperty("db.url", "jdbc:mysql://localhost:3306/fraudguard_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
+        return cachedProperties.getProperty("db.url", "jdbc:mysql://localhost:3306/fraudguard_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&connectTimeout=3000&socketTimeout=3000");
     }
 
     public static String getUser() {
