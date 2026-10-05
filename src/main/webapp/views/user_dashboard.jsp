@@ -113,8 +113,18 @@
             </table>
         </div>
     <% } else { %>
-        <div style="padding: 2.5rem; text-align: center; color: var(--text-muted);">
-            No transactions found on this account yet. Click "Send Money" to test the fraud engine.
+        <div style="text-align: center; padding: 3rem 1.5rem;">
+            <div style="width: 48px; height: 48px; background: rgba(79, 70, 229, 0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; border: 1px solid rgba(79, 70, 229, 0.25);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </div>
+            <h4 style="font-weight: 700; color: #fff; margin-bottom: 0.35rem; font-size: 1.05rem;">No Transactions Yet</h4>
+            <p style="color: var(--text-muted); font-size: 0.86rem; max-width: 320px; margin: 0 auto 1.25rem;">Your account is active and protected. Send funds to initiate your first live transfer.</p>
+            <a href="<%= cp %>/transaction/new" class="btn btn-primary btn-sm">
+                Initiate Transfer
+            </a>
         </div>
     <% } %>
 </div>

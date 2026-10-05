@@ -216,32 +216,13 @@ public class DatabaseConnection {
                         "ip_address VARCHAR(45), " +
                         "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
 
-                // Seed Default Users
-                // admin / Admin@123
-                // analyst / Analyst@123
-                // john_doe / Customer@123
-                // superadmin@rohanrastogi.in / Admin@123
+                // Seed Default User Accounts Only (No dummy transactions or alerts; clean live data pipeline)
                 stmt.execute("INSERT INTO users (id, username, password_hash, email, full_name, role, status, balance) VALUES " +
                         "(1, 'admin', 'fg_salt_2026$lML0jFQ4sxiZuEX+1XvhD7v/IcbANyCsPazOFN4sq7Q=', 'admin@fraudguard.local', 'System Administrator', 'ADMIN', 'ACTIVE', 0.00), " +
                         "(2, 'analyst', 'fg_salt_2026$Qz407HNlbKg1qqRlg8iPixcRzhI9L+QngCCpyYM4NaI=', 'analyst@fraudguard.local', 'Sarah Connor (Analyst)', 'ANALYST', 'ACTIVE', 0.00), " +
                         "(3, 'john_doe', 'fg_salt_2026$UZ8WCuNPDCV7P3WGTjTUxpRsdT7iRnkvojDsu5DHOcs=', 'john@example.com', 'Johnathan Doe', 'CUSTOMER', 'ACTIVE', 25000.00), " +
                         "(4, 'jane_smith', 'fg_salt_2026$UZ8WCuNPDCV7P3WGTjTUxpRsdT7iRnkvojDsu5DHOcs=', 'jane@example.com', 'Jane Smith', 'CUSTOMER', 'ACTIVE', 15400.00), " +
                         "(5, 'superadmin@rohanrastogi.in', 'fg_salt_2026$lML0jFQ4sxiZuEX+1XvhD7v/IcbANyCsPazOFN4sq7Q=', 'superadmin@rohanrastogi.in', 'Rohan Rastogi (SuperAdmin)', 'ADMIN', 'ACTIVE', 50000.00)");
-
-                // Seed Initial Transactions
-                stmt.execute("INSERT INTO transactions (id, transaction_ref, user_id, amount, currency, recipient_account, recipient_name, type, status, location, ip_address, device_fingerprint, risk_score, risk_level, notes) VALUES " +
-                        "(1, 'TXN-INIT-001', 3, 250.00, 'USD', 'ACC-RET-1001', 'Whole Foods Market', 'PAYMENT', 'APPROVED', 'New York, US', '192.168.1.15', 'dev-mac-john', 0, 'LOW', 'Approved: Clear transaction profile.'), " +
-                        "(2, 'TXN-INIT-002', 3, 18500.00, 'USD', 'ACC-WIRE-8841', 'Apex Global Holdings', 'TRANSFER', 'FLAGGED', 'London, UK', '82.165.197.1', 'dev-pc-work', 65, 'HIGH', 'Flagged for compliance review: High Amount transfer'), " +
-                        "(3, 'TXN-INIT-003', 4, 500.00, 'USD', 'ACC-SANCTIONED-999', 'DarkWeb Exchange Node', 'TRANSFER', 'REJECTED', 'Eastern Europe', '198.51.100.99', 'dev-tor-browser', 95, 'CRITICAL', 'Auto-rejected: Sanctioned recipient account')");
-
-                // Seed Initial Alerts
-                stmt.execute("INSERT INTO fraud_alerts (id, transaction_id, transaction_ref, user_id, amount, risk_score, risk_level, triggered_rules, reason, status) VALUES " +
-                        "(1, 2, 'TXN-INIT-002', 3, 18500.00, 65, 'HIGH', 'HIGH_AMOUNT_RULE', 'Elevated transfer of $18,500.00 exceeds standard baseline', 'OPEN'), " +
-                        "(2, 3, 'TXN-INIT-003', 4, 500.00, 95, 'CRITICAL', 'BLACKLIST_ACCOUNT_RULE', 'Recipient account flagged under OFAC sanctions blacklist', 'UNDER_REVIEW')");
-
-                // Seed Initial Audit Logs
-                stmt.execute("INSERT INTO audit_logs (id, user_id, username, action, entity_type, entity_id, details, ip_address) VALUES " +
-                        "(1, 1, 'admin', 'SYSTEM_INIT', 'SYSTEM', 1, 'FraudGuard platform initialized.', '127.0.0.1')");
             }
             fallbackInitialized = true;
             fallbackActive = true;

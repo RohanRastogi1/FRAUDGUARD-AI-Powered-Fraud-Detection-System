@@ -129,7 +129,16 @@
                 </table>
             </div>
         <% } else { %>
-            <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No alerts raised.</p>
+            <div style="text-align: center; padding: 2.75rem 1.5rem;">
+                <div style="width: 48px; height: 48px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; border: 1px solid rgba(16, 185, 129, 0.25);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                </div>
+                <h4 style="font-weight: 700; color: #fff; margin-bottom: 0.35rem; font-size: 1.05rem;">Zero Active Fraud Alerts</h4>
+                <p style="color: var(--text-muted); font-size: 0.86rem; max-width: 320px; margin: 0 auto;">Live transactions are actively monitored. Zero policy violations or anomalies detected.</p>
+            </div>
         <% } %>
     </div>
 
@@ -172,7 +181,16 @@
                 </table>
             </div>
         <% } else { %>
-            <p style="color: var(--text-muted); text-align: center; padding: 2rem;">No transactions recorded.</p>
+            <div style="text-align: center; padding: 2.75rem 1.5rem;">
+                <div style="width: 48px; height: 48px; background: rgba(79, 70, 229, 0.1); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; border: 1px solid rgba(79, 70, 229, 0.25);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <h4 style="font-weight: 700; color: #fff; margin-bottom: 0.35rem; font-size: 1.05rem;">Awaiting Live Transactions</h4>
+                <p style="color: var(--text-muted); font-size: 0.86rem; max-width: 320px; margin: 0 auto;">Initiate transfers from the customer portal to monitor pipeline scoring and real-time execution.</p>
+            </div>
         <% } %>
     </div>
 </div>
