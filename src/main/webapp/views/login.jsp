@@ -13,7 +13,7 @@
     <div class="auth-glow-backdrop"></div>
     <div class="auth-card">
         <div style="text-align: center; margin-bottom: 2.25rem;">
-            <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; box-shadow: 0 0 24px rgba(79, 70, 229, 0.55); border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="auth-brand-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                     <path d="M9 12l2 2 4-4"/>
@@ -128,8 +128,8 @@
         var passField = document.getElementById('password');
         userField.value = u;
         passField.value = p;
-        userField.style.borderColor = 'var(--accent-cyan)';
-        passField.style.borderColor = 'var(--accent-cyan)';
+        userField.style.borderColor = 'var(--primary)';
+        passField.style.borderColor = 'var(--primary)';
         setTimeout(function() {
             userField.style.borderColor = '';
             passField.style.borderColor = '';
