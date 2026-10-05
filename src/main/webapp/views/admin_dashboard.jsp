@@ -35,16 +35,22 @@
 
 <!-- High-Level KPI Stat Cards (Real Database Data) -->
 <div class="grid grid-cols-4" style="margin-bottom: 2rem;">
-    <div class="card stat-card">
-        <span class="stat-label">Processed Volume</span>
+    <div class="card stat-card stat-card-emerald">
+        <span class="stat-label">
+            <span>Processed Volume</span>
+            <span style="font-size: 1.1rem;">💰</span>
+        </span>
         <span class="stat-value" style="color: #34d399;">$<%= String.format("%,.2f", stats.getTotalApprovedVolume()) %></span>
         <span class="stat-meta">
             <span><%= stats.getApprovedCount() %> Approved Transactions</span>
         </span>
     </div>
 
-    <div class="card stat-card">
-        <span class="stat-label">Total Transactions</span>
+    <div class="card stat-card stat-card-cyan">
+        <span class="stat-label">
+            <span>Total Transactions</span>
+            <span style="font-size: 1.1rem;">📊</span>
+        </span>
         <span class="stat-value"><%= stats.getTotalTransactions() %></span>
         <span class="stat-meta">
             <span style="color: #fb7185;"><%= stats.getRejectedCount() %> Rejected</span> &bull; 
@@ -52,14 +58,20 @@
         </span>
     </div>
 
-    <div class="card stat-card">
-        <span class="stat-label">Fraud Detection Rate</span>
-        <span class="stat-value" style="color: #818cf8;"><%= String.format("%.1f", stats.getFraudDetectionRate()) %>%</span>
+    <div class="card stat-card stat-card-purple">
+        <span class="stat-label">
+            <span>Fraud Intercept Rate</span>
+            <span style="font-size: 1.1rem;">🛡️</span>
+        </span>
+        <span class="stat-value" style="color: #a78bfa;"><%= String.format("%.1f", stats.getFraudDetectionRate()) %>%</span>
         <span class="stat-meta">Anomalous / Intercepted transfers</span>
     </div>
 
-    <div class="card stat-card">
-        <span class="stat-label">Active Fraud Alerts</span>
+    <div class="card stat-card stat-card-rose">
+        <span class="stat-label">
+            <span>Active Fraud Alerts</span>
+            <span style="font-size: 1.1rem;">🚨</span>
+        </span>
         <span class="stat-value" style="<%= stats.getOpenAlerts() > 0 ? "color: #f43f5e;" : "color: #9ca3af;" %>">
             <%= stats.getOpenAlerts() %>
         </span>

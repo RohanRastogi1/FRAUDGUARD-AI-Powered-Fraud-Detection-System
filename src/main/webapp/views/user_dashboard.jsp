@@ -31,30 +31,39 @@
 </div>
 
 <div class="grid grid-cols-3" style="margin-bottom: 2rem;">
-    <div class="card stat-card">
-        <span class="stat-label">Available Liquid Balance</span>
+    <div class="card stat-card stat-card-emerald">
+        <span class="stat-label">
+            <span>Available Liquid Balance</span>
+            <span style="font-size: 1.1rem;">💳</span>
+        </span>
         <span class="stat-value" style="color: #34d399;">$<%= String.format("%,.2f", user.getBalance()) %></span>
         <span class="stat-meta">
             <span class="badge badge-success"><%= user.getStatus().name() %></span>
-            Account FDIC Insured
+            <span>Account FDIC Insured</span>
         </span>
     </div>
 
-    <div class="card stat-card">
-        <span class="stat-label">Active Fraud Shield</span>
+    <div class="card stat-card stat-card-cyan">
+        <span class="stat-label">
+            <span>Autonomous Fraud Shield</span>
+            <span style="font-size: 1.1rem;">🛡️</span>
+        </span>
         <span class="stat-value" style="color: #38bdf8;">ACTIVE</span>
         <span class="stat-meta">
-            7 Behavioral ML Rules Active
+            <span>7 Behavioral Rules Online</span>
         </span>
     </div>
 
-    <div class="card stat-card">
-        <span class="stat-label">Pending Security Flags</span>
+    <div class="card stat-card stat-card-purple">
+        <span class="stat-label">
+            <span>Pending Security Flags</span>
+            <span style="font-size: 1.1rem;">⚠️</span>
+        </span>
         <span class="stat-value" style="<%= userAlerts != null && !userAlerts.isEmpty() ? "color: #fbbf24;" : "color: #9ca3af;" %>">
             <%= userAlerts != null ? userAlerts.size() : 0 %>
         </span>
         <span class="stat-meta">
-            <a href="<%= cp %>/alerts" style="text-decoration: underline;">View details &rarr;</a>
+            <a href="<%= cp %>/alerts" style="text-decoration: underline; font-weight: 600;">View flagged alerts &rarr;</a>
         </span>
     </div>
 </div>

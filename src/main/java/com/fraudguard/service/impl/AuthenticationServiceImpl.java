@@ -41,7 +41,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Optional<User> userOpt = userDAO.findByUsername(username.trim());
         if (userOpt.isEmpty()) {
             auditLogDAO.create(new AuditLog(null, username, "LOGIN_FAILED", "USER", null, "Unknown username attempted", ipAddress));
-            throw new AuthenticationException("Invalid username or password.");
+            throw new AuthenticationException("Invalid username or password. Available test accounts: admin / Admin@123, analyst / Analyst@123, john_doe / Customer@123");
         }
 
         User user = userOpt.get();

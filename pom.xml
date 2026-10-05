@@ -47,12 +47,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- H2 in-memory database for automated JDBC DAO unit testing -->
+        <!-- H2 in-memory database for automated testing and zero-friction fallback -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.3.232</version>
-            <scope>test</scope>
         </dependency>
 
     </dependencies>

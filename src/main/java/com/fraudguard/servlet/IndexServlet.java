@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Entry servlet routing root path requests to appropriate portal.
  */
-@WebServlet(urlPatterns = {"", "/"})
+@WebServlet("/index")
 public class IndexServlet extends HttpServlet {
 
     @Override
