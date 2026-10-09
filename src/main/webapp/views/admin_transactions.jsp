@@ -54,7 +54,7 @@
 <div class="card">
     <% if (transactions != null && !transactions.isEmpty()) { %>
         <div class="table-container">
-            <table class="data-table">
+            <table class="data-table responsive-card-table">
                 <thead>
                     <tr>
                         <th>Tx ID / Ref</th>
@@ -76,28 +76,28 @@
                         else if (tx.getStatus().name().equals("REJECTED")) badgeClass = "badge-danger";
                     %>
                         <tr>
-                            <td>
+                            <td data-label="Tx ID / Ref">
                                 #<%= tx.getId() %><br>
                                 <code><%= tx.getTransactionRef() %></code>
                             </td>
-                            <td>User #<%= tx.getUserId() %></td>
-                            <td><%= tx.getTimestamp() != null ? tx.getTimestamp().format(dtf) : "—" %></td>
-                            <td style="font-weight: 700; color: #fff;">$<%= String.format("%,.2f", tx.getAmount()) %></td>
-                            <td>
+                            <td data-label="User ID">User #<%= tx.getUserId() %></td>
+                            <td data-label="Date & Time"><%= tx.getTimestamp() != null ? tx.getTimestamp().format(dtf) : "—" %></td>
+                            <td data-label="Amount" style="font-weight: 700; color: var(--text-primary);">₹<%= String.format("%,.2f", tx.getAmount()) %></td>
+                            <td data-label="Recipient">
                                 <strong><%= tx.getRecipientName() %></strong><br>
                                 <small style="color: var(--text-muted);"><%= tx.getRecipientAccount() %></small>
                             </td>
-                            <td>
+                            <td data-label="Origin Context">
                                 <%= tx.getLocation() != null ? tx.getLocation() : "—" %><br>
                                 <small style="color: var(--text-muted);">IP: <%= tx.getIpAddress() %></small>
                             </td>
-                            <td>
+                            <td data-label="Risk Score">
                                 <span class="badge <%= tx.getRiskScore() >= 85 ? "badge-critical" : (tx.getRiskScore() >= 60 ? "badge-danger" : (tx.getRiskScore() >= 30 ? "badge-warning" : "badge-success")) %>">
                                     <%= tx.getRiskScore() %> (<%= tx.getRiskLevel().name() %>)
                                 </span>
                             </td>
-                            <td><span class="badge <%= badgeClass %>"><%= tx.getStatus().name() %></span></td>
-                            <td style="font-size: 0.8rem; color: var(--text-secondary); max-width: 280px; word-break: break-word;">
+                            <td data-label="Status"><span class="badge <%= badgeClass %>"><%= tx.getStatus().name() %></span></td>
+                            <td data-label="Notes / Reason" style="font-size: 0.8rem; color: var(--text-secondary); word-break: normal; overflow-wrap: break-word;">
                                 <%= tx.getNotes() != null ? tx.getNotes() : "—" %>
                             </td>
                         </tr>

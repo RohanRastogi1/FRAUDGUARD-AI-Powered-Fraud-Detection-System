@@ -39,13 +39,13 @@ public class HighAmountRule extends AbstractFraudRule {
             return RuleEvaluation.trigger(
                     getRuleName(),
                     60,
-                    String.format("Critical high amount transfer: $%s exceeds threshold of $%s", amount, criticalThreshold)
+                    String.format("Critical high amount transfer: ₹%s exceeds threshold of ₹%s", amount, criticalThreshold)
             );
         } else if (amount.compareTo(elevatedThreshold) >= 0) {
             return RuleEvaluation.trigger(
                     getRuleName(),
                     getDefaultWeight(),
-                    String.format("Elevated amount transfer: $%s exceeds threshold of $%s", amount, elevatedThreshold)
+                    String.format("Elevated amount transfer: ₹%s exceeds threshold of ₹%s", amount, elevatedThreshold)
             );
         }
 

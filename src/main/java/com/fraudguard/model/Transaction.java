@@ -36,7 +36,7 @@ public class Transaction implements Serializable {
 
     public Transaction() {
         this.transactionRef = "TXN-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        this.currency = "USD";
+        this.currency = "INR";
         this.type = TransactionType.TRANSFER;
         this.status = TransactionStatus.PENDING;
         this.riskScore = 0;
@@ -67,7 +67,7 @@ public class Transaction implements Serializable {
         this.transactionRef = transactionRef;
         this.userId = userId;
         this.amount = amount;
-        this.currency = currency != null ? currency : "USD";
+        this.currency = currency != null ? currency : "INR";
         this.recipientAccount = recipientAccount;
         this.recipientName = recipientName;
         this.type = type != null ? type : TransactionType.TRANSFER;

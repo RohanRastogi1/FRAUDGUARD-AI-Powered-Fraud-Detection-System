@@ -20,7 +20,7 @@
 <div class="card">
     <% if (alerts != null && !alerts.isEmpty()) { %>
         <div class="table-container">
-            <table class="data-table">
+            <table class="data-table responsive-card-table">
                 <thead>
                     <tr>
                         <th>Alert ID</th>
@@ -42,19 +42,19 @@
                         else if ("OPEN".equals(a.getStatus().name())) statusBadge = "badge-danger";
                     %>
                         <tr>
-                            <td>#<%= a.getId() %></td>
-                            <td><%= a.getCreatedAt() != null ? a.getCreatedAt().format(dtf) : "—" %></td>
-                            <td><code><%= a.getTransactionRef() %></code></td>
-                            <td style="font-weight: 700;">$<%= String.format("%,.2f", a.getAmount()) %></td>
-                            <td>
+                            <td data-label="Alert ID">#<%= a.getId() %></td>
+                            <td data-label="Created"><%= a.getCreatedAt() != null ? a.getCreatedAt().format(dtf) : "—" %></td>
+                            <td data-label="Tx Reference"><code><%= a.getTransactionRef() %></code></td>
+                            <td data-label="Amount" style="font-weight: 700;">₹<%= String.format("%,.2f", a.getAmount()) %></td>
+                            <td data-label="Risk Score">
                                 <span class="badge <%= a.getRiskScore() >= 85 ? "badge-critical" : (a.getRiskScore() >= 60 ? "badge-danger" : "badge-warning") %>">
                                     <%= a.getRiskScore() %>/100 (<%= a.getRiskLevel().name() %>)
                                 </span>
                             </td>
-                            <td><code><%= a.getTriggeredRules() %></code></td>
-                            <td style="font-size: 0.82rem; color: var(--text-secondary); max-width: 250px;"><%= a.getReason() %></td>
-                            <td><span class="badge <%= statusBadge %>"><%= a.getStatus().name() %></span></td>
-                            <td style="font-size: 0.82rem; color: #a5b4fc;"><%= a.getReviewNotes() != null ? a.getReviewNotes() : "Under routine monitoring" %></td>
+                            <td data-label="Triggered Rules"><code><%= a.getTriggeredRules() %></code></td>
+                            <td data-label="Reason / Details" style="font-size: 0.82rem; color: var(--text-secondary); word-break: normal; overflow-wrap: break-word;"><%= a.getReason() %></td>
+                            <td data-label="Status"><span class="badge <%= statusBadge %>"><%= a.getStatus().name() %></span></td>
+                            <td data-label="Analyst Notes" style="font-size: 0.82rem; color: #a5b4fc;"><%= a.getReviewNotes() != null ? a.getReviewNotes() : "Under routine monitoring" %></td>
                         </tr>
                     <% } %>
                 </tbody>

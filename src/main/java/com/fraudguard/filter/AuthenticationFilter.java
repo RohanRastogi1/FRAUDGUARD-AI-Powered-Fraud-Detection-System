@@ -36,7 +36,9 @@ public class AuthenticationFilter implements Filter {
             "/images",
             "/hello",
             "/login",
-            "/logout"
+            "/logout",
+            "/docs",
+            "/architecture"
     ));
 
     @Override

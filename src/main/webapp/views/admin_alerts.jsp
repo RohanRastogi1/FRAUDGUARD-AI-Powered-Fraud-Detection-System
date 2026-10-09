@@ -45,7 +45,7 @@
 <div class="card">
     <% if (alerts != null && !alerts.isEmpty()) { %>
         <div class="table-container">
-            <table class="data-table">
+            <table class="data-table responsive-card-table">
                 <thead>
                     <tr>
                         <th>Alert ID</th>
@@ -67,40 +67,40 @@
                         else if ("OPEN".equals(a.getStatus().name())) statusBadge = "badge-danger";
                     %>
                         <tr>
-                            <td>#<%= a.getId() %></td>
-                            <td><%= a.getCreatedAt() != null ? a.getCreatedAt().format(dtf) : "—" %></td>
-                            <td>
+                            <td data-label="Alert ID">#<%= a.getId() %></td>
+                            <td data-label="Created"><%= a.getCreatedAt() != null ? a.getCreatedAt().format(dtf) : "—" %></td>
+                            <td data-label="User">
                                 <strong><%= a.getUserName() != null ? a.getUserName() : "User #" + a.getUserId() %></strong>
                             </td>
-                            <td><code><%= a.getTransactionRef() %></code></td>
-                            <td style="font-weight: 700;">$<%= String.format("%,.2f", a.getAmount()) %></td>
-                            <td>
+                            <td data-label="Tx Reference"><code><%= a.getTransactionRef() %></code></td>
+                            <td data-label="Amount" style="font-weight: 700;">₹<%= String.format("%,.2f", a.getAmount()) %></td>
+                            <td data-label="Risk Score">
                                 <span class="badge <%= a.getRiskScore() >= 85 ? "badge-critical" : (a.getRiskScore() >= 60 ? "badge-danger" : "badge-warning") %>">
                                     <%= a.getRiskScore() %>/100 (<%= a.getRiskLevel().name() %>)
                                 </span>
                             </td>
-                            <td style="max-width: 260px; font-size: 0.82rem;">
+                            <td data-label="Rules & Reason" style="font-size: 0.82rem;">
                                 <strong style="color: #fca5a5;"><%= a.getTriggeredRules() %></strong><br>
                                 <span style="color: var(--text-secondary);"><%= a.getReason() %></span>
                             </td>
-                            <td>
+                            <td data-label="Current State">
                                 <span class="badge <%= statusBadge %>"><%= a.getStatus().name() %></span><br>
                                 <% if (a.getReviewedBy() != null) { %>
                                     <small style="color: var(--text-muted);">by <%= a.getReviewedBy() %></small>
                                 <% } %>
                             </td>
-                            <td style="min-width: 240px;">
-                                <form action="<%= cp %>/admin/alert-action" method="post" style="display: flex; flex-direction: column; gap: 0.4rem;">
+                            <td data-label="Analyst Action">
+                                <form action="<%= cp %>/admin/alert-action" method="post" style="display: flex; flex-direction: column; gap: 0.4rem; width: 100%;">
                                     <input type="hidden" name="alertId" value="<%= a.getId() %>">
-                                    <div style="display: flex; gap: 0.35rem;">
-                                        <select name="status" class="form-control" style="padding: 0.3rem 0.5rem; font-size: 0.8rem;">
+                                    <div style="display: flex; gap: 0.35rem; width: 100%;">
+                                        <select name="status" class="form-control" style="padding: 0.3rem 0.5rem; font-size: 0.8rem; flex: 1;">
                                             <option value="UNDER_REVIEW" <%= "UNDER_REVIEW".equals(a.getStatus().name()) ? "selected" : "" %>>Under Review</option>
                                             <option value="RESOLVED" <%= "RESOLVED".equals(a.getStatus().name()) ? "selected" : "" %>>Resolve (Verified)</option>
                                             <option value="DISMISSED" <%= "DISMISSED".equals(a.getStatus().name()) ? "selected" : "" %>>Dismiss (False Positive)</option>
                                         </select>
                                         <button type="submit" class="btn btn-primary btn-sm" style="padding: 0.3rem 0.75rem;">Save</button>
                                     </div>
-                                    <input type="text" name="reviewNotes" class="form-control" style="padding: 0.3rem 0.5rem; font-size: 0.78rem;"
+                                    <input type="text" name="reviewNotes" class="form-control" style="padding: 0.3rem 0.5rem; font-size: 0.78rem; width: 100%;"
                                            placeholder="Resolution notes..." value="<%= a.getReviewNotes() != null ? a.getReviewNotes() : "" %>">
                                 </form>
                             </td>

@@ -48,7 +48,7 @@ public class RapidBalanceDrainRule extends AbstractFraudRule {
                 return RuleEvaluation.trigger(
                         getRuleName(),
                         getDefaultWeight(),
-                        String.format("High balance drain: transaction consumes %d%% of available user balance ($%s / $%s)",
+                        String.format("High balance drain: transaction consumes %d%% of available user balance (₹%s / ₹%s)",
                                 percent, amount, balance)
                 );
             }

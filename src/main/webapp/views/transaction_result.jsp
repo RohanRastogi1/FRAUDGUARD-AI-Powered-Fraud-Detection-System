@@ -74,22 +74,22 @@
         </div>
 
         <!-- Transaction Details -->
-        <div class="grid grid-cols-2" style="margin-bottom: 1.5rem;">
-            <div>
+        <div class="result-details-grid">
+            <div class="result-detail-item">
                 <span class="stat-label">Transaction Reference</span>
-                <p style="font-size: 1.1rem; font-weight: 700; color: #fff;"><code><%= tx.getTransactionRef() %></code></p>
+                <p style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-top: 0.2rem;"><code><%= tx.getTransactionRef() %></code></p>
             </div>
-            <div>
+            <div class="result-detail-item">
                 <span class="stat-label">Transferred Amount</span>
-                <p style="font-size: 1.1rem; font-weight: 700; color: #fff;">$<%= String.format("%,.2f", tx.getAmount()) %> <%= tx.getCurrency() %></p>
+                <p style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-top: 0.2rem;">₹<%= String.format("%,.2f", tx.getAmount()) %> <%= tx.getCurrency() %></p>
             </div>
-            <div>
+            <div class="result-detail-item">
                 <span class="stat-label">Recipient Details</span>
-                <p style="color: #fff;"><%= tx.getRecipientName() %> (<%= tx.getRecipientAccount() %>)</p>
+                <p style="color: var(--text-primary); margin-top: 0.2rem;"><%= tx.getRecipientName() %> (<%= tx.getRecipientAccount() %>)</p>
             </div>
-            <div>
+            <div class="result-detail-item">
                 <span class="stat-label">Originating Node</span>
-                <p style="color: var(--text-secondary);"><%= tx.getLocation() %> &bull; IP: <%= tx.getIpAddress() %></p>
+                <p style="color: var(--text-secondary); margin-top: 0.2rem;"><%= tx.getLocation() %> &bull; IP: <%= tx.getIpAddress() %></p>
             </div>
         </div>
 
@@ -98,7 +98,7 @@
             <h4 style="margin-bottom: 0.75rem; font-size: 1rem;">Rule Triggers & Explanations</h4>
             <% if (!score.getTriggeredRules().isEmpty()) { %>
                 <div class="table-container">
-                    <table class="data-table">
+                    <table class="data-table responsive-card-table">
                         <thead>
                             <tr>
                                 <th>Triggered Rule</th>
@@ -109,9 +109,9 @@
                         <tbody>
                             <% for (Map.Entry<String, Integer> entry : score.getRuleBreakdown().entrySet()) { %>
                                 <tr>
-                                    <td><code><%= entry.getKey() %></code></td>
-                                    <td><span class="badge badge-danger">+<%= entry.getValue() %> pts</span></td>
-                                    <td style="color: var(--text-secondary);"><%= score.getExplanation() %></td>
+                                    <td data-label="Triggered Rule"><code><%= entry.getKey() %></code></td>
+                                    <td data-label="Points"><span class="badge badge-danger">+<%= entry.getValue() %> pts</span></td>
+                                    <td data-label="Explanation" style="color: var(--text-secondary);"><%= score.getExplanation() %></td>
                                 </tr>
                             <% } %>
                         </tbody>
@@ -124,7 +124,7 @@
             <% } %>
         </div>
 
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+        <div class="result-actions-row">
             <a href="<%= cp %>/dashboard" class="btn btn-primary" id="btn-return-dashboard">Return to Dashboard</a>
             <a href="<%= cp %>/transaction/new" class="btn btn-secondary">Submit Another Transaction</a>
         </div>

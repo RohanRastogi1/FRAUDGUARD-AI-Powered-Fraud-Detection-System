@@ -38,7 +38,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new AuthenticationException("Username and password are required.");
         }
 
-        Optional<User> userOpt = userDAO.findByUsername(username.trim());
+        String lookup = username.trim();
+        if ("superadmin@rohanrastogi.in".equalsIgnoreCase(lookup)) {
+            lookup = "superadmin";
+        }
+
+        Optional<User> userOpt = userDAO.findByUsername(lookup);
+        if (userOpt.isEmpty()) {
+            userOpt = userDAO.findByEmail(lookup);
+        }
         if (userOpt.isEmpty()) {
             auditLogDAO.create(new AuditLog(null, username, "LOGIN_FAILED", "USER", null, "Unknown username attempted", ipAddress));
             throw new AuthenticationException("Invalid username or password. Available test accounts: admin / Admin@123, analyst / Analyst@123, john_doe / Customer@123");

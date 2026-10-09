@@ -38,6 +38,10 @@ public class AdminUserActionServlet extends HttpServlet {
 
         if (userIdStr != null && statusStr != null) {
             try {
+                if ("SUSPENDED".equalsIgnoreCase(statusStr) || "BLOCKED".equalsIgnoreCase(statusStr)) {
+                    response.sendRedirect(request.getContextPath() + "/admin/dashboard?msg=action_disabled_demo");
+                    return;
+                }
                 Long userId = Long.parseLong(userIdStr.trim());
                 UserStatus status = UserStatus.fromString(statusStr);
                 String adminUsername = currentUser != null ? currentUser.getUsername() : "system_admin";

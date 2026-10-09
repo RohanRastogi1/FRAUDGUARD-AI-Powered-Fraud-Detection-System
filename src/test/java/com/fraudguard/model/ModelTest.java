@@ -65,7 +65,7 @@ public class ModelTest {
         assertDoesNotThrow(tx::validate);
         assertNotNull(tx.getTransactionRef());
         assertEquals(TransactionStatus.PENDING, tx.getStatus());
-        assertEquals("USD", tx.getCurrency());
+        assertEquals("INR", tx.getCurrency());
     }
 
     @Test

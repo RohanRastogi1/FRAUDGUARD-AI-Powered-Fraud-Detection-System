@@ -1,25 +1,33 @@
 # FraudGuard — AI-Powered Fraud Detection System
 
-[![Java](https://img.shields.io/badge/Java-25%20LTS-orange.svg)](https://adoptium.net/)
-[![Maven](https://img.shields.io/badge/Maven-3.10.0-blue.svg)](https://maven.apache.org/)
-[![Tomcat](https://img.shields.io/badge/Tomcat-10.1.60-yellow.svg)](https://tomcat.apache.org/)
-[![Servlet](https://img.shields.io/badge/Servlet-Jakarta%206.0-red.svg)](https://jakarta.ee/)
-[![Database](https://img.shields.io/badge/Database-MySQL%208.0%2B-blue.svg)](https://www.mysql.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-An enterprise-grade, real-time financial fraud detection and risk scoring engine built from the ground up using **Core Java**, **Jakarta Servlet 6.0**, **JDBC**, **MySQL**, and **Vanilla CSS**. Designed for high-throughput anomaly evaluation, ACID transaction integrity, and educational viva demonstration.
+> **🌐 Live Application URL**: [https://fraudguard.rohanrastogi.in](https://fraudguard.rohanrastogi.in)  
+> **📦 Official GitHub Repository**: [https://github.com/RohanRastogi1/FRAUDGUARD-AI-Powered-Fraud-Detection-System](https://github.com/RohanRastogi1/FRAUDGUARD-AI-Powered-Fraud-Detection-System)  
+> **📘 Complete User Guide**: [docs/USER_GUIDE.md](docs/USER_GUIDE.md) &bull; **💾 Database Architecture**: [docs/DATABASE_DESIGN.md](docs/DATABASE_DESIGN.md) &bull; **🎓 Viva Summary**: [docs/IMPLEMENTATION_SUMMARY.md](docs/IMPLEMENTATION_SUMMARY.md)
 
 ---
 
-## 1. Problem Statement & Objectives
+[![Production URL](https://img.shields.io/badge/Live%20Application-fraudguard.rohanrastogi.in-ea580c?style=for-the-badge&logo=google-chrome&logoColor=white)](https://fraudguard.rohanrastogi.in)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RohanRastogi1/FRAUDGUARD-AI-Powered-Fraud-Detection-System)
+[![Java 25](https://img.shields.io/badge/Java-25%20LTS-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://adoptium.net/)
+[![Jakarta Servlet](https://img.shields.io/badge/Servlet-Jakarta%206.0-C0262D?style=for-the-badge&logo=eclipse-ide&logoColor=white)](https://jakarta.ee/)
+[![Apache Tomcat](https://img.shields.io/badge/Tomcat-10.1%2B-F8DC75?style=for-the-badge&logo=apache-tomcat&logoColor=black)](https://tomcat.apache.org/)
+[![MySQL 8.0](https://img.shields.io/badge/Database-MySQL%208.0%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![License](https://img.shields.io/badge/License-MIT-success?style=for-the-badge)](LICENSE)
 
-Modern digital payment networks process billions of financial events daily. Financial institutions face mounting threats from account takeovers, bot testing, impossible physical travel, sanctions evasion, and rapid balance liquidation. 
+---
 
-### Key Objectives
-1. **Millisecond Anomaly Detection**: Evaluate incoming transactions across 7 modular behavioral rules in real time.
-2. **ACID Financial Integrity**: Ensure atomic balance debits, credits, and transaction logging with automatic rollback on error.
-3. **Role-Based Access Control**: Provide distinct, secured operational experiences for Customers, Fraud Analysts, and System Administrators.
-4. **Viva-First Design**: Codebase structured specifically to demonstrate Core Java OOP, Collections, Multithreading, JDBC, and Servlets during academic evaluations.
+## 1. Executive Summary
+
+**FraudGuard** is an enterprise-grade financial fraud intelligence and autonomous risk-decisioning platform engineered from the ground up using **Core Java**, **Jakarta Servlet 6.0**, **JDBC**, **MySQL 8.0**, and **Vanilla CSS**. 
+
+Designed to process digital transactions with sub-10ms latency, FraudGuard executes multi-layered behavioral heuristic rules, preserves strict ACID financial atomicity, and provides complete explainability for compliance auditing, risk analysts, and executive teams.
+
+### Core Value Proposition
+- **⚡ Real-Time Anomaly Scoring**: Evaluates incoming transactions against 7 behavioral heuristics in parallel before funds are moved.
+- **🛡️ ACID Financial Integrity**: Atomic balance debits and credits with automatic transactional rollback upon anomaly detection.
+- **🔐 Multi-Role RBAC**: Tailored experiences for Customers, Fraud Analysts, and System Administrators.
+- **💎 Enterprise Financial Interface**: Custom Vanilla CSS design system featuring WCAG high-contrast Light Mode, Obsidian Dark Mode, glowing border accents, and fully responsive mobile drawer navigation.
+- **🎓 Viva & Academic Excellence**: Purpose-built to demonstrate Core Java OOP, multithreading (`ExecutorService`), thread-safe collections, JDBC connection pooling, and Servlet lifecycles.
 
 ---
 
@@ -27,52 +35,68 @@ Modern digital payment networks process billions of financial events daily. Fina
 
 ```mermaid
 graph TD
-    Client["Web Browser / Client (JSP / Vanilla CSS)"] -->|HTTP GET / POST| Servlets["Jakarta Servlet 6.0 Layer"]
-    Servlets -->|RBAC & Session Inspection| Filter["AuthenticationFilter"]
-    Filter -->|Validated Request| Services["Service Layer (Auth, Tx, Fraud, Admin)"]
-    Services -->|Context & Invariants| Engine["Fraud Detection Engine (Core Java)"]
-    Engine -->|Rule Evaluation| Rules["Modular Fraud Rules (Strategy Pattern)"]
-    Rules -->|Composite Score| Engine
-    Services -->|ACID Atomic Transfer| DAO["DAO Layer (User, Tx, Alert, Audit)"]
-    DAO -->|JDBC PreparedStatement| DB[(MySQL 8.0+ / InnoDB)]
+    Client["Client Web Browser (JSP + Vanilla CSS Design System)"] -->|HTTPS / WSS| Nginx["Nginx Reverse Proxy (SSL: fraudguard.rohanrastogi.in)"]
+    Nginx -->|HTTP :8080| Servlets["Jakarta Servlet 6.0 Layer (Tomcat 10.1+)"]
+    Servlets -->|RBAC & Session Inspection| Filter["AuthenticationFilter (Thread-Safe)"]
+    Filter -->|Validated Request| Services["Service Layer (AuthService, TxService, FraudService)"]
+    Services -->|Context & Invariants| Engine["Fraud Detection Engine (Core Java Heuristics)"]
+    Engine -->|Parallel Evaluation| Rules["Modular Fraud Rules (Strategy Pattern)"]
+    Rules -->|Aggregated Normalized Score| Engine
+    Services -->|ACID Atomic Transfer| DAO["DAO Layer (UserDAO, TxDAO, AlertDAO, AuditDAO)"]
+    DAO -->|PreparedStatement / Connection Pool| DB[(MySQL 8.0+ InnoDB / ACID Storage)]
 ```
 
 ---
 
-## 3. Fraud Detection Flowchart
+## 3. Fraud Detection Engine Pipeline
 
 ```mermaid
 flowchart TD
-    Start([Incoming Transaction]) --> Validate{Valid Invariants?}
+    Start([Incoming Transaction Request]) --> Validate{Invariants Valid?}
     Validate -- No --> Error([Throw InvalidTransactionException])
-    Validate -- Yes --> FetchHistory[Fetch User Behavioral History & Known Devices]
-    FetchHistory --> ParallelRules[Evaluate Rules in Parallel / Sequence]
-    
-    subgraph Modular Fraud Rules
-        R1[High Amount Rule]
-        R2[Velocity Spike Rule]
-        R3[Geographic Anomaly Rule]
-        R4[Sanctions Blacklist Rule]
-        R5[Unusual Hour Rule]
-        R6[New Device Rule]
-        R7[Rapid Balance Drain Rule]
+    Validate -- Yes --> FetchContext[Fetch Sender Profile & 30-Day Behavioral History]
+    FetchContext --> Engine[FraudDetectionEngine]
+
+    subgraph Modular Behavioral Rules
+        R1[Rule 1: High Amount Anomaly]
+        R2[Rule 2: Velocity Burst Spike]
+        R3[Rule 3: Geographic Impossible Speed]
+        R4[Rule 4: Sanctions & Blacklisted Account]
+        R5[Rule 5: Nocturnal Unusual Hours]
+        R6[Rule 6: Hardware Device Fingerprint]
+        R7[Rule 7: Rapid Balance Drain]
     end
-    
-    ParallelRules --> R1 & R2 & R3 & R4 & R5 & R6 & R7
-    R1 & R2 & R3 & R4 & R5 & R6 & R7 --> RiskCalc[RiskCalculator: Aggregate & Normalize Score 0-100]
-    
-    RiskCalc --> Decision{Risk Level?}
-    Decision -- "CRITICAL (>= 85)" --> Reject[Status: REJECTED\nGenerate Critical Alert\nRollback Transfer]
-    Decision -- "HIGH (60 - 84)" --> Flag[Status: FLAGGED\nGenerate Investigation Alert\nHold for Analyst Review]
-    Decision -- "MEDIUM (30 - 59)" --> Monitor[Status: APPROVED\nGenerate Advisory Flag\nCommit Balance Debit]
-    Decision -- "LOW (0 - 29)" --> Approve[Status: APPROVED\nCommit Balance Debit]
-    
-    Reject & Flag & Monitor & Approve --> End([Persist & Log Audit Trail])
+
+    Engine --> R1 & R2 & R3 & R4 & R5 & R6 & R7
+    R1 & R2 & R3 & R4 & R5 & R6 & R7 --> RiskCalc[RiskCalculator: Weight & Aggregate Score 0-100]
+
+    RiskCalc --> Decision{Risk Decision Tier?}
+    Decision -- "CRITICAL (>= 85)" --> Reject[Status: REJECTED\nAbort Transfer\nRollback ACID Tx\nCreate Critical Alert]
+    Decision -- "HIGH (60 - 84)" --> Flag[Status: FLAGGED\nHold Funds\nQueue for Analyst Review]
+    Decision -- "MEDIUM (30 - 59)" --> Monitor[Status: APPROVED\nCommit Transfer\nLog Advisory Flag]
+    Decision -- "LOW (0 - 29)" --> Approve[Status: APPROVED\nCommit Transfer\nNormal Clearance]
+
+    Reject & Flag & Monitor & Approve --> Audit[Append Immutable Audit Trail in MySQL]
+    Audit --> End([Return Real-Time Verdict Receipt])
 ```
 
 ---
 
-## 4. Entity-Relationship (ER) Diagram
+## 4. Behavioral Rule Matrix & Scoring Weights
+
+| Rule Name | Technical Identifier | Default Weight | Trigger Condition | Anomaly Action |
+|---|---|---|---|---|
+| **High Amount Rule** | `HIGH_AMOUNT` | 45 | Transfer $> ₹1,00,000$ (or $> 3\times$ customer average) | Escalates risk to High |
+| **Velocity Spike Rule** | `VELOCITY_BURST` | 35 | $> 3$ transactions initiated within 5 minutes | Flags bot / automated testing |
+| **Geographic Anomaly** | `GEOGRAPHIC_ANOMALY` | 50 | Consecutive locations require transit speed $> 800\text{ km/h}$ | Impossible physical travel flag |
+| **Sanctions & Blacklist** | `SANCTIONS_BLACKLIST` | 100 | Recipient account listed on international sanctions | Immediate rejection & abort |
+| **Unusual Hours Rule** | `UNUSUAL_HOURS` | 20 | Transfer executed between 01:00 AM and 05:00 AM | Nocturnal behavioral variance flag |
+| **New Device Anomaly** | `NEW_DEVICE` | 25 | Unrecognized user-agent / device fingerprint hash | Account takeover advisory flag |
+| **Rapid Balance Drain** | `RAPID_DRAIN` | 40 | Transfer drains $> 80\%$ of balance in single transfer / 1 hour | Liquidity liquidation flag |
+
+---
+
+## 5. Entity-Relationship (ER) Schema
 
 ```mermaid
 erDiagram
@@ -87,27 +111,28 @@ erDiagram
         varchar password_hash
         varchar email UK
         varchar full_name
-        enum role
-        enum status
-        decimal balance
+        enum role "ADMIN, ANALYST, CUSTOMER"
+        enum status "ACTIVE, SUSPENDED, LOCKED"
+        decimal balance "15, 2"
         timestamp created_at
+        timestamp updated_at
     }
 
     TRANSACTIONS {
         bigint id PK
         varchar transaction_ref UK
         bigint user_id FK
-        decimal amount
-        varchar currency
+        decimal amount "15, 2"
+        varchar currency "INR, USD"
         varchar recipient_account
         varchar recipient_name
-        enum type
-        enum status
+        enum type "P2P, BILL_PAY, MERCHANT, WIRE"
+        enum status "APPROVED, FLAGGED, REJECTED"
         varchar location
         varchar ip_address
         varchar device_fingerprint
-        int risk_score
-        enum risk_level
+        int risk_score "0 - 100"
+        enum risk_level "LOW, MEDIUM, HIGH, CRITICAL"
         text notes
         timestamp created_at
     }
@@ -117,12 +142,12 @@ erDiagram
         bigint transaction_id FK
         varchar transaction_ref
         bigint user_id FK
-        decimal amount
-        int risk_score
-        enum risk_level
+        decimal amount "15, 2"
+        int risk_score "0 - 100"
+        enum risk_level "LOW, MEDIUM, HIGH, CRITICAL"
         varchar triggered_rules
         text reason
-        enum status
+        enum status "OPEN, UNDER_REVIEW, RESOLVED, FALSE_POSITIVE"
         varchar reviewed_by
         text review_notes
         timestamp created_at
@@ -143,166 +168,147 @@ erDiagram
 
 ---
 
-## 5. Class Diagram
+## 6. Pre-Configured Demonstration Personas
 
-```mermaid
-classDiagram
-    class User {
-        -Long id
-        -String username
-        -String passwordHash
-        -String email
-        -String fullName
-        -Role role
-        -UserStatus status
-        -BigDecimal balance
-        +canTransact() boolean
-        +isAdmin() boolean
-        +isAnalyst() boolean
-    }
+For instant demonstration and viva testing, the platform includes pre-seeded accounts accessible via **One-Click Demo Fill** on the login page:
 
-    class Transaction {
-        -Long id
-        -String transactionRef
-        -Long userId
-        -BigDecimal amount
-        -TransactionStatus status
-        -RiskLevel riskLevel
-        -Integer riskScore
-        +validate() void
-    }
-
-    class FraudRule {
-        <<interface>>
-        +getRuleName() String
-        +getDefaultWeight() int
-        +evaluate(tx, user, context) RuleEvaluation
-    }
-
-    class HighAmountRule {
-        +evaluate(tx, user, context) RuleEvaluation
-    }
-
-    class BlacklistAccountRule {
-        -Set~String~ blacklistedAccounts
-        +evaluate(tx, user, context) RuleEvaluation
-    }
-
-    class VelocityRule {
-        +evaluate(tx, user, context) RuleEvaluation
-    }
-
-    class FraudDetector {
-        -List~FraudRule~ rules
-        -RiskCalculator riskCalculator
-        +evaluate(tx, user, context) RiskScore
-        +generateAlertIfNeeded(tx, score) FraudAlert
-    }
-
-    class TransactionProcessor {
-        -ExecutorService executorService
-        -AtomicLong totalProcessed
-        +process(tx, user) ProcessingResult
-        +submitAsync(tx, user) Future
-    }
-
-    FraudRule <|.. HighAmountRule
-    FraudRule <|.. BlacklistAccountRule
-    FraudRule <|.. VelocityRule
-    FraudDetector o-- FraudRule
-    TransactionProcessor o-- FraudDetector
-```
+| Persona | Role | Username | Password | Purpose & Capabilities | Initial Balance |
+|---|---|---|---|---|---|
+| **SuperAdmin** | `ADMIN` | `admin` | `password` | Executive KPI analytics, user status changes, global transaction monitor, immutable audit logs | $0.00 |
+| **Fraud Analyst** | `ANALYST` | `analyst` | `password` | Alert triage queue, rule inspection, investigative resolution (Approve vs Reject) | $0.00 |
+| **John Doe** | `CUSTOMER` | `john_doe` | `password` | High-volume primary customer with rich 30-day baseline history | **₹2,50,000.00** |
+| **Jane Smith** | `CUSTOMER` | `jane_smith` | `password` | Moderate-activity customer profile | **₹1,50,000.00** |
+| **Bob Taylor** | `CUSTOMER` | `bob_taylor` | `password` | High-risk customer profile used for rapid drain & velocity demonstrations | **₹50,000.00** |
 
 ---
 
-## 6. Pre-Configured Demonstration Accounts
-
-| Role | Username | Password | Purpose | Initial Balance |
-|---|---|---|---|---|
-| **System Administrator** | `admin` | `Admin@123` | Executive KPI analytics, user status changes, audit logs | $0.00 |
-| **Fraud Analyst** | `analyst` | `Analyst@123` | Alert investigation triage, incident resolution | $0.00 |
-| **Customer** | `john_doe` | `Customer@123` | Primary demonstration account for submitting transfers | $25,000.00 |
-| **Customer** | `jane_smith` | `Customer@123` | Secondary customer account | $15,400.00 |
-| **Customer** | `bob_taylor` | `Customer@123` | High-risk customer profile | $4,800.00 |
-
----
-
-## 7. Installation & Running Instructions
+## 7. Quick Start & Local Installation
 
 ### 7.1 Prerequisites
-- **Java Development Kit (JDK)**: OpenJDK 25 LTS (or JDK 17+)
+- **Java**: OpenJDK 21 LTS or 25 LTS
 - **Build Tool**: Apache Maven 3.9+
-- **Application Server**: Apache Tomcat 10.1.x (Jakarta EE 10 / Servlet 6.0 compatible)
+- **Application Server**: Apache Tomcat 10.1+ (Jakarta Servlet 6.0 compatible)
 - **Database**: MySQL 8.0+
 
-### 7.2 Database Setup
-1. Open your MySQL client or terminal:
+### 7.2 Automated Windows Quickstart
+If running on Windows, FraudGuard includes ready-to-run automation scripts:
+```cmd
+:: Start Tomcat & launch FraudGuard
+start.bat
+
+:: Stop Tomcat server
+stop.bat
+
+:: Restart Tomcat and reload webapp
+restart.bat
+```
+
+### 7.3 Manual Database Setup
+1. Launch MySQL CLI:
    ```bash
    mysql -u root -p
    ```
-2. Execute the schema script:
+2. Execute schema and seed data scripts:
    ```sql
    SOURCE database/schema.sql;
-   ```
-3. Seed test records and initial accounts:
-   ```sql
    SOURCE database/seed.sql;
    ```
+3. Configure connection credentials in `src/main/resources/db.properties` (or copy from `db.properties.example`):
+   ```properties
+   db.driver=com.mysql.cj.jdbc.Driver
+   db.url=jdbc:mysql://localhost:3306/fraudguard_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+   db.user=root
+   db.password=your_mysql_password
+   ```
 
-### 7.3 Database Configuration
-Copy the template configuration in `src/main/resources/db.properties.example` to `src/main/resources/db.properties`:
-```properties
-db.driver=com.mysql.cj.jdbc.Driver
-db.url=jdbc:mysql://localhost:3306/fraudguard_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-db.user=root
-db.password=your_password
-```
-*(Alternatively, configure environment variables `DB_URL`, `DB_USER`, `DB_PASSWORD`)*
-
-### 7.4 Building the Application
-Run Maven to compile, execute all unit and integration test suites, and package the WAR:
+### 7.4 Maven Build & Packaging
+Compile, run all 36 test suites, and generate the deployable WAR:
 ```bash
 mvn clean package
 ```
-This generates:
-```
-target/fraudguard.war
-```
+Generates: `target/fraudguard.war`.
 
-### 7.5 Deployment to Apache Tomcat 10
-1. Copy `target/fraudguard.war` to your Tomcat `webapps/` folder:
-   ```bash
-   cp target/fraudguard.war $CATALINA_HOME/webapps/
-   ```
-2. Start Tomcat:
-   - **Linux / macOS**: `$CATALINA_HOME/bin/startup.sh`
-   - **Windows**: `$CATALINA_HOME\bin\startup.bat`
-3. Access FraudGuard in your browser:
-   ```
-   http://localhost:8080/fraudguard/
-   ```
+### 7.5 Deploy to Apache Tomcat 10
+Copy the generated WAR file into your Tomcat `webapps/` folder:
+```bash
+cp target/fraudguard.war $CATALINA_HOME/webapps/
+```
+Start Tomcat and access the application at:
+```
+http://localhost:8080/fraudguard/
+```
 
 ---
 
-## 8. Automated Testing & Verification
+## 8. Automated Test Suite
 
-The test suite runs 36 tests across 5 test suites with zero external dependencies (backed by in-memory H2 in MySQL compatibility mode):
+FraudGuard includes automated unit and integration tests executing with zero external dependencies (powered by in-memory H2 in MySQL mode):
 
 ```bash
 mvn clean test
 ```
 
-### Test Coverage Highlights:
-- **`ModelTest`**: Validates encapsulation, role privileges, domain invariants, and risk score aggregation.
-- **`FraudDetectionEngineTest`**: Evaluates individual rules (High Amount, Velocity bursts, Impossible Travel, Blacklists, Unusual Hours, Balance Drain) and multithreaded concurrency.
-- **`SecurityUtilTest`**: Verifies salted SHA-256 cryptographic hashing and XSS sanitation.
-- **`JdbcDaoTest`**: Validates CRUD and atomic ACID transaction rollbacks on insufficient funds.
-- **`ServiceLayerTest`**: Tests business orchestration and service isolation.
-- **`FullPipelineIntegrationTest`**: End-to-end customer registration, transaction scoring, alert triage, and score boundary tests.
+| Test Class | Focus Area | What It Validates |
+|---|---|---|
+| **`ModelTest`** | Domain Models & OOP | Encapsulation, risk level boundaries, RBAC role methods, invariant checks |
+| **`FraudDetectionEngineTest`** | Detection Core | Evaluation of all 7 rules, multithreaded `ExecutorService` safety, scoring accuracy |
+| **`SecurityUtilTest`** | Cryptography | Salted SHA-256 password hashing, XSS HTML sanitization |
+| **`JdbcDaoTest`** | Persistence & ACID | CRUD persistence, PreparedStatement safety, atomic balance rollback on failure |
+| **`ServiceLayerTest`** | Business Orchestration | Authentication isolation, transaction authorization, rule integration |
+| **`FullPipelineIntegrationTest`** | End-to-End | Registration &rarr; Send Funds &rarr; Heuristic Scoring &rarr; Alert Triage |
 
 ---
 
-## 9. Viva Explanation & Source Code Sitemap
+## 9. Project Directory Layout
 
-For in-depth explanations of every Core Java, JDBC, and Servlet concept used throughout the project, refer to:
-[docs/IMPLEMENTATION_SUMMARY.md](docs/IMPLEMENTATION_SUMMARY.md)
+```
+FRAUDGUARD — AI-Powered Fraud Detection System/
+├── database/
+│   ├── schema.sql                     # Normalized DDL tables & indexes
+│   └── seed.sql                       # Demonstration accounts & Indian INR data
+├── docs/
+│   ├── USER_GUIDE.md                  # Comprehensive user manual & rule testing
+│   ├── DATABASE_DESIGN.md             # Schema architecture & index strategy
+│   └── IMPLEMENTATION_SUMMARY.md      # Core Java & Servlet viva technical notes
+├── src/
+│   ├── main/
+│   │   ├── java/com/fraudguard/
+│   │   │   ├── dao/                   # JDBC Data Access Objects & Interfaces
+│   │   │   ├── exception/             # Custom exception hierarchy
+│   │   │   ├── filter/                # Authentication & RBAC Filters
+│   │   │   ├── fraud/                 # Engine, Rule Strategy, & Risk Calculator
+│   │   │   ├── model/                 # Domain Entities & Enums
+│   │   │   ├── service/               # Business Service Layer
+│   │   │   ├── servlet/               # Jakarta Servlets (Controllers)
+│   │   │   └── util/                  # Connection pooling, security & hashing
+│   │   ├── resources/
+│   │   │   ├── db.properties.example  # Production database template
+│   │   │   └── db.properties          # Local database credentials (gitignored)
+│   │   └── webapp/
+│   │       ├── css/style.css          # Enterprise Vanilla CSS design system
+│   │       ├── WEB-INF/web.xml        # Servlet 6.0 deployment descriptor
+│   │       └── views/                 # JSP views (Dashboard, Alerts, History, etc.)
+├── pom.xml                            # Maven dependencies & build configuration
+├── start.bat                          # One-click Windows deployment script
+├── stop.bat                           # Tomcat shutdown script
+├── restart.bat                        # Fast recompile & redeploy script
+└── README.md                          # Executive project documentation
+```
+
+---
+
+## 10. Engineering Team — TeamRootOps
+
+Built by **TeamRootOps** &bull; School of Computing Science and Engineering (SCSE), Galgotias University:
+- **Rohan Rastogi** — Team Leader (`ADMIN`) &bull; Lead System Architect & Backend Engineer
+- **Anant Kumar** — Team Member &bull; Core Java & Anomaly Detection Specialist
+- **Kumar Arya** — Team Member &bull; Database Architecture & ACID Transactions Specialist
+- **Rohan Tevatia** — Team Member &bull; Frontend Design System & Web Integration Engineer
+
+---
+
+## 11. License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+*Secure. Autonomous. Real-Time. Powered by FraudGuard AI.*

@@ -19,27 +19,27 @@
         <h1 class="page-title">Welcome back, <%= user.getFullName() %></h1>
         <p class="page-subtitle">Your banking transactions are monitored in real time by FraudGuard AI Engine.</p>
     </div>
-    <div>
-        <a href="<%= cp %>/transaction/new" class="btn btn-primary" id="new-tx-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <div class="page-header-actions">
+        <a href="<%= cp %>/transaction/new" class="btn btn-primary btn-dashboard-action" id="new-tx-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            Send Money
+            <span>Send Money</span>
         </a>
     </div>
 </div>
 
-<div class="grid grid-cols-3" style="margin-bottom: 2rem;">
+<div class="grid grid-cols-3 stat-grid" style="margin-bottom: 2rem;">
     <div class="card stat-card stat-card-emerald">
         <span class="stat-label">
             <span>Available Liquid Balance</span>
             <span style="font-size: 1.1rem;">💳</span>
         </span>
-        <span class="stat-value" style="color: #34d399;">$<%= String.format("%,.2f", user.getBalance()) %></span>
+        <span class="stat-value" style="color: #34d399;">₹<%= String.format("%,.2f", user.getBalance()) %></span>
         <span class="stat-meta">
             <span class="badge badge-success"><%= user.getStatus().name() %></span>
-            <span>Account FDIC Insured</span>
+            <span>RBI DICGC Insured</span>
         </span>
     </div>
 
@@ -75,42 +75,77 @@
     </div>
 
     <% if (recentTransactions != null && !recentTransactions.isEmpty()) { %>
-        <div class="table-container">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Reference</th>
-                        <th>Date & Time</th>
-                        <th>Type</th>
-                        <th>Recipient</th>
-                        <th>Amount</th>
-                        <th>Risk Score</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for (Transaction tx : recentTransactions) { 
-                        String badgeClass = "badge-info";
-                        if (tx.getStatus().name().equals("APPROVED")) badgeClass = "badge-success";
-                        else if (tx.getStatus().name().equals("FLAGGED")) badgeClass = "badge-warning";
-                        else if (tx.getStatus().name().equals("REJECTED")) badgeClass = "badge-danger";
-                    %>
+        <div class="desktop-only-view">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
                         <tr>
-                            <td><code><%= tx.getTransactionRef() %></code></td>
-                            <td><%= tx.getTimestamp() != null ? tx.getTimestamp().format(dtf) : "—" %></td>
-                            <td><%= tx.getType().getDisplayName() %></td>
-                            <td><strong><%= tx.getRecipientName() %></strong><br><small style="color: var(--text-muted);"><%= tx.getRecipientAccount() %></small></td>
-                            <td style="font-weight: 700; color: #fff;">$<%= String.format("%,.2f", tx.getAmount()) %></td>
-                            <td>
-                                <span class="badge <%= tx.getRiskScore() >= 85 ? "badge-critical" : (tx.getRiskScore() >= 60 ? "badge-danger" : (tx.getRiskScore() >= 30 ? "badge-warning" : "badge-success")) %>">
-                                    <%= tx.getRiskScore() %>/100 (<%= tx.getRiskLevel().name() %>)
-                                </span>
-                            </td>
-                            <td><span class="badge <%= badgeClass %>"><%= tx.getStatus().name() %></span></td>
+                            <th>Reference</th>
+                            <th>Date & Time</th>
+                            <th>Type</th>
+                            <th>Recipient</th>
+                            <th>Amount</th>
+                            <th>Risk Score</th>
+                            <th>Status</th>
                         </tr>
-                    <% } %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% for (Transaction tx : recentTransactions) { 
+                            String badgeClass = "badge-info";
+                            if (tx.getStatus().name().equals("APPROVED")) badgeClass = "badge-success";
+                            else if (tx.getStatus().name().equals("FLAGGED")) badgeClass = "badge-warning";
+                            else if (tx.getStatus().name().equals("REJECTED")) badgeClass = "badge-danger";
+                        %>
+                            <tr>
+                                <td><code><%= tx.getTransactionRef() %></code></td>
+                                <td><%= tx.getTimestamp() != null ? tx.getTimestamp().format(dtf) : "—" %></td>
+                                <td><%= tx.getType().getDisplayName() %></td>
+                                <td><strong><%= tx.getRecipientName() %></strong><br><small style="color: var(--text-muted);"><%= tx.getRecipientAccount() %></small></td>
+                                <td style="font-weight: 700; color: var(--text-primary);">₹<%= String.format("%,.2f", tx.getAmount()) %></td>
+                                <td>
+                                    <span class="badge <%= tx.getRiskScore() >= 85 ? "badge-critical" : (tx.getRiskScore() >= 60 ? "badge-danger" : (tx.getRiskScore() >= 30 ? "badge-warning" : "badge-success")) %>">
+                                        <%= tx.getRiskScore() %>/100
+                                    </span>
+                                </td>
+                                <td><span class="badge <%= badgeClass %>"><%= tx.getStatus().name() %></span></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mobile-only-cards">
+            <% for (Transaction tx : recentTransactions) { 
+                String badgeClass = "badge-info";
+                if (tx.getStatus().name().equals("APPROVED")) badgeClass = "badge-success";
+                else if (tx.getStatus().name().equals("FLAGGED")) badgeClass = "badge-warning";
+                else if (tx.getStatus().name().equals("REJECTED")) badgeClass = "badge-danger";
+            %>
+                <div class="customer-tx-card">
+                    <div class="c-tx-header">
+                        <div class="c-tx-recipient-info">
+                            <span class="c-tx-recipient-name"><%= tx.getRecipientName() %></span>
+                            <small class="c-tx-account"><%= tx.getRecipientAccount() %></small>
+                        </div>
+                        <span class="c-tx-amount">₹<%= String.format("%,.2f", tx.getAmount()) %></span>
+                    </div>
+                    <div class="c-tx-body">
+                        <div class="c-tx-meta">
+                            <span class="c-tx-type"><%= tx.getType().getDisplayName() %></span>
+                            <span class="c-tx-dot">&bull;</span>
+                            <span class="c-tx-time"><%= tx.getTimestamp() != null ? tx.getTimestamp().format(dtf) : "—" %></span>
+                        </div>
+                        <code><%= tx.getTransactionRef() %></code>
+                    </div>
+                    <div class="c-tx-footer">
+                        <span class="badge <%= tx.getRiskScore() >= 85 ? "badge-critical" : (tx.getRiskScore() >= 60 ? "badge-danger" : (tx.getRiskScore() >= 30 ? "badge-warning" : "badge-success")) %>">
+                            Risk: <%= tx.getRiskScore() %>/100
+                        </span>
+                        <span class="badge <%= badgeClass %>"><%= tx.getStatus().name() %></span>
+                    </div>
+                </div>
+            <% } %>
         </div>
     <% } else { %>
         <div style="text-align: center; padding: 3rem 1.5rem;">
