@@ -29,13 +29,12 @@
     /* Hero Section */
     .hero-section {
         position: relative;
-        min-height: 90vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 4rem 2rem;
+        padding: 6rem 2rem 2rem;
         z-index: 1;
     }
     .hero-glow {
@@ -67,15 +66,16 @@
         transform: translateY(40px);
     }
     .hero-title span {
-        background: linear-gradient(135deg, var(--accent-orange), var(--accent-cyan, #38bdf8));
+        background: linear-gradient(135deg, var(--accent-orange), #f43f5e);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        display: inline-block;
     }
     .hero-subtitle {
         font-size: clamp(1rem, 2vw, 1.25rem);
         color: var(--text-secondary);
         max-width: 600px;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         line-height: 1.6;
         animation: fade-up 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s forwards;
         opacity: 0;
@@ -110,7 +110,7 @@
         width: 100%;
         max-width: 900px;
         height: 320px;
-        margin: 4rem auto;
+        margin: 3rem auto;
         border-radius: 24px;
         background: rgba(30, 41, 59, 0.3);
         border: 1px solid var(--border-color);
@@ -378,7 +378,7 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-glow"></div>
-        <h1 class="hero-title">Autonomous Financial<br>Integrity & Security.</h1>
+        <h1 class="hero-title"><span>Autonomous Financial<br>Integrity & Security.</span></h1>
         <p class="hero-subtitle">Enterprise-grade fraud detection intercepting digital transactions in real-time. Driven by composite heuristics, ACID rollbacks, and Core Java.</p>
         <a href="<%= dashLink %>" class="hero-cta"><%= btnText %></a>
 
