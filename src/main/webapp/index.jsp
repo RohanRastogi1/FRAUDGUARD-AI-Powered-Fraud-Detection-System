@@ -34,7 +34,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 6rem 2rem 2rem;
+        padding: 2rem 2rem 0;
         z-index: 1;
     }
     .hero-glow {
@@ -66,7 +66,7 @@
         transform: translateY(40px);
     }
     .hero-title span {
-        background: linear-gradient(135deg, var(--accent-orange), #f43f5e);
+        background: linear-gradient(135deg, var(--primary, #ea580c), #f43f5e);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         display: inline-block;
@@ -89,7 +89,7 @@
         font-size: 1.1rem;
         font-weight: 600;
         border-radius: 50px;
-        background: var(--accent-orange);
+        background: var(--primary, #ea580c);
         color: #fff;
         text-decoration: none;
         transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -204,7 +204,7 @@
         height: 70px;
         background: var(--card-bg);
         border-radius: 50%;
-        border: 2px solid var(--accent-orange);
+        border: 2px solid var(--primary, #ea580c);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -301,14 +301,14 @@
     .bento-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-lg);
-        border-color: var(--accent-orange);
+        border-color: var(--primary, #ea580c);
     }
     .bento-icon {
         width: 48px;
         height: 48px;
         border-radius: 12px;
         background: rgba(234, 88, 12, 0.1);
-        color: var(--accent-orange);
+        color: var(--primary, #ea580c);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -355,7 +355,7 @@
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        background: var(--accent-orange);
+        background: var(--primary, #ea580c);
     }
     @keyframes scroll-marquee {
         0% { transform: translateX(0); }
@@ -400,7 +400,7 @@
 
             <div class="engine-core">
                 <div class="engine-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary, #ea580c)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                     </svg>
                 </div>
