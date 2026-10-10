@@ -154,22 +154,6 @@
   padding: 0;
 }
 
-/* Custom Scrollbar — Refined Track */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: var(--radius-full);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-}
-
 html {
   width: 100%;
   max-width: 100%;
