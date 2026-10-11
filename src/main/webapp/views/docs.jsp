@@ -322,16 +322,16 @@ Cookie: JSESSIONID=...</code></pre>
             </p>
             <div class="team-credits-box">
                 <div class="team-credits-item">
-                    <strong>Rohan Rastogi</strong> &mdash; <em>Team Leader</em>
+                    <strong>Rohan Rastogi</strong> &mdash; <em>Team Leader &bull; Lead System Architect, Core Java Engine, Database &amp; Frontend Engineer</em>
                 </div>
                 <div class="team-credits-item">
-                    <strong>Anant Kumar</strong> &mdash; <em>Member</em>
+                    <strong>Anant Kumar</strong>
                 </div>
                 <div class="team-credits-item">
-                    <strong>Kumar Arya</strong> &mdash; <em>Member</em>
+                    <strong>Kumar Arya</strong>
                 </div>
                 <div class="team-credits-item">
-                    <strong>ROHAN TEVATIA</strong> &mdash; <em>Member</em>
+                    <strong>Rohan Tevatia</strong>
                 </div>
             </div>
             <div style="margin-top: 1.5rem;">

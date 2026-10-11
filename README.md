@@ -300,10 +300,10 @@ FRAUDGUARD — AI-Powered Fraud Detection System/
 ## 10. Engineering Team — TeamRootOps
 
 Built by **TeamRootOps** &bull; School of Computing Science and Engineering (SCSE), Galgotias University:
-- **Rohan Rastogi** — Team Leader (`ADMIN`) &bull; Lead System Architect & Backend Engineer
-- **Anant Kumar** — Team Member &bull; Core Java & Anomaly Detection Specialist
-- **Kumar Arya** — Team Member &bull; Database Architecture & ACID Transactions Specialist
-- **Rohan Tevatia** — Team Member &bull; Frontend Design System & Web Integration Engineer
+- **Rohan Rastogi** — Team Leader (`ADMIN`) &bull; Lead System Architect, Core Java Engine, Anomaly Detection, Database Architecture & Frontend Engineer
+- **Anant Kumar**
+- **Kumar Arya**
+- **Rohan Tevatia**
 
 ---
 
