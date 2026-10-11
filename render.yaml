@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: fraudguard
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
