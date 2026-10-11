@@ -20,6 +20,9 @@ RUN rm -rf webapps/*
 # Deploy FraudGuard as ROOT.war so it serves directly at root (/)
 COPY --from=builder /app/target/fraudguard.war webapps/ROOT.war
 
+# Disable Tomcat shutdown port 8005 so Render only sees the HTTP port
+RUN sed -i 's/<Server port="8005"/<Server port="-1"/' conf/server.xml
+
 # Expose default Tomcat HTTP port
 EXPOSE 8080
 
